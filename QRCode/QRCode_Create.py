@@ -10,6 +10,6 @@ qr = qrcode.QRCode(
 )
 qr.add_data(img)
 qr.make(fit=True)
-img.save("BarCode.png")
+img.save("QRCode.png")
 print(type(img))
 print(img.size)

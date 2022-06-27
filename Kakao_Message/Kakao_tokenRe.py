@@ -6,7 +6,7 @@ import json
 url = 'https://kauth.kakao.com/oauth/token'
 rest_api_key = '473cfccae3abe1b71befc4ea36e69287'
 redirect_uri = 'https://localhost:3000'
-authorize_code = 'bPbe9plXvCZ9Fkz0sL9ZkCCb_8T2fVavz0MOMvX5_lIKqmvjQZ8gQVCbNKoc-ggo4YtOygo9cxcAAAGBpOKQpA'
+authorize_code = 'fK43lD3ATeT4g3wl_60gP-DZrYjLFtSoX3Xrp2-WvkLtpF2___Rf5K6xxMiVjXTviZOnaQo9dZsAAAGBpXLZ-A'
 
 
 def f_auth():
@@ -51,13 +51,28 @@ def f_send_talk(token, text):
     header = {'Authorization': 'Bearer ' + token}
     url = 'https://kapi.kakao.com/v2/api/talk/memo/default/send'
     post = {
-        'object_type': 'text',
+        'object_type': 'feed',
+        'description' : 'QRCode',
+        'image_url' : '../../QRCode/QRCode.png',
+        'image_width' : 640,
+        'image_height' : 640,
         'text': text,
-        'link': {
-            'web_url': 'https://developers.kakao.com',
-            'mobile_web_url': 'https://developers.kakao.com'
-        },
-        'button_title': '키워드'
+        "buttons": [
+            {
+                "title": "웹으로 이동",
+                "link": {
+                    "web_url": "https://www.jvision.ac.kr/vision/main/",
+                    "mobile_web_url": "https://www.jvision.ac.kr/vision/main/"
+                }
+            },
+            {
+                "title": "앱으로 이동",
+                "link": {
+                    "android_execution_params": "contentId=100",
+                    "ios_execution_params": "contentId=100"
+                }
+            }
+        ]
     }
     data = {'template_object': json.dumps(post)}
     return requests.post(url, headers=header, data=data)
