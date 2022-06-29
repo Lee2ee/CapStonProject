@@ -6,7 +6,7 @@ used_codes = []
 data_list = []
 
 try:
-    f = open("qrbarcode_data.txt", "r", encoding="utf8")
+    f = open("qrcode_data.txt", "r", encoding="utf8")
     data_list = f.readlines()
 except FileNotFoundError:
     pass
@@ -24,19 +24,17 @@ while True:
     success, frame = cap.read()
 
     for code in pyzbar.decode(frame):
-        cv2.imwrite('qrbarcode_image.png', frame)
+        cv2.imwrite('QRCode.png', frame)
         my_code = code.data.decode('utf-8')
         if my_code not in used_codes:
             print("인식 성공 : ", my_code)
-            playsound("qrbarcode_beep.mp3")
             used_codes.append(my_code)
 
-            f2 = open("qrbarcode_data.txt", "a", encoding="utf8")
-            f2.write(my_code+'\n')
+            f2 = open("qrcode_data.txt", "a", encoding="utf8")
+            f2.write(my_code + '\n')
             f2.close()
         elif my_code in used_codes:
             print("이미 인식된 코드 입니다.!!!")
-            playsound("qrbarcode_beep.mp3")
         else:
             pass
 

@@ -1,5 +1,6 @@
 import requests
 import json
+from PIL import Image
 
 #1.
 # with open(r"C:\Users\user\Desktop\PythonWorkspace\kakao_test\kakao_code.json","r") as fp:
@@ -11,21 +12,24 @@ with open("kakao_code.json","r") as fp:
 
 url="https://kapi.kakao.com/v2/api/talk/memo/default/send"
 
-# kapi.kakao.com/v2/api/talk/memo/default/send 
+# kapi.kakao.com/v2/api/talk/memo/default/send
 
 headers={
     "Authorization" : "Bearer " + tokens["access_token"]
 }
+with open('./../QRCode/imageURL.txt', 'r') as tx:
+    img = tx.read()
+
 
 data={
     "template_object": json.dumps({
-"object_type": "feed",
+        "object_type": "feed",
         "content": {
             "title": "요청사항",
             "description": "우리 애가 먹을건데 탕수육 조금만 넣어주세요^^",
-            "image_url": "C:\Python_Project\CapStonProject\QRCode\QRCode.png", #스테이크 //qr코드
-            "image_width": 1280,
-            "image_height": 1280,
+            "image_url": 'https://postfiles.pstatic.net/MjAyMjA2MjhfMTkw/MDAxNjU2NDIxMzg5ODc3.gJCFjuWSfl65BWqXi_SuZ9Rx8wO4h4Hr2Bv84XU4PoIg.HAIGjElsXQYNvRnlcLeukAVmAK4RLrRdprNm7-dLlF8g.PNG.e990727/QRCode.png?type=w966', #스테이크 //qr코드
+            "image_width": 640,
+            "image_height": 640,
             "link": {
                 "web_url": "http://www.daum.net",
                 "mobile_web_url": "http://m.daum.net",
@@ -35,8 +39,8 @@ data={
         },
         "item_content" : {
             "profile_text" :"가게이름",
-            "profile_image_url" :"https://cphoto.asiae.co.kr/listimglink/6/2020022613360580548_1582691765.jpg", #치즈 //가게 로고
-            "title_image_url" : "C:\Python_Project\CapStonProject\QRCode\QRCode.png", #국밥 //메뉴사진
+            "profile_image_url" :"https://www.urbanbrush.net/web/wp-content/uploads/edd/2018/09/urbanbrush-20180918002417018176.png", #치즈 //가게 로고
+            "title_image_url" : "https://pbs.twimg.com/media/FGP7oInVcAQOvUx?format=jpg&name=900x900", #국밥 //메뉴사진
             "title_image_text" :"메뉴1",
             "title_image_category" : "얼큰한 국밥",
             "items" : [
