@@ -10,7 +10,7 @@ cam.set(3,640) # 너비
 cam.set(4,480) # 높이
 
 # 3번에 사용할 이미지 불러오기
-img = cv2.imread('IronMan.png', cv2.IMREAD_UNCHANGED) # 원본 사용
+# img = cv2.imread('IronMan.png', cv2.IMREAD_UNCHANGED) # 원본 사용
 
 while True:
     ret, frame = cam.read()
